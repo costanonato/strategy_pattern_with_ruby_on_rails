@@ -1,0 +1,7 @@
+# order_id = 1 | $ 300  => $ 300 (-0%)
+# order_id = 2 | $ 700  => $ 665 (-5%)
+# order_id = 3 | $ 1000 => $ 900 (-10%)
+
+curl -X POST -H "Content-Type: application/json" \
+     -d '{"coupon_code": "10PercentOff"}' \
+     http://localhost:3000/orders/1/apply_discount_coupon
