@@ -3,11 +3,22 @@ class Coupon < ApplicationRecord
 
   # Calculates discount for a given amount.
   def calculate_discount_for(amount)
+    # [blackfriday-2022: 2022-11-25]
+    # Full discount is applied for all amounts
+    if self.created_at.to_date.to_s == '2022-11-25'
+      if self.percentage?
+        discount = (amount * self.discount_value) / 100
+      elsif self.fixed?
+        discount = self.discount_value
+      end
+
+      return true, discount
+
     # [Percentage]
     # Full discount is applied for amounts >= 1000
     # Half discount is applied for amounts >= 700
     # No discount is applied for amounts < 700
-    if self.percentage?
+    elsif self.percentage?
       full_discount = (amount * self.discount_value) / 100
 
       return true, full_discount   if amount >= 1000

@@ -41,3 +41,12 @@ Coupon.create!(
   discount_value: 400,
   code: '400ContoOff'
 )
+
+########
+
+Coupon.create!(
+  created_at: '2022-11-25 07:00',
+  discount_type: :fixed,
+  discount_value: 500,
+  code: 'QuinhentaoOff'
+)
